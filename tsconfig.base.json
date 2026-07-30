@@ -6,7 +6,9 @@
     "emitDeclarationOnly": true,
     "importHelpers": true,
     "isolatedModules": true,
-    "lib": ["es2022"],
+    "lib": [
+      "es2022"
+    ],
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "noEmitOnError": true,
@@ -17,6 +19,19 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@sx-bluecrow-ui/source"]
+    "customConditions": [
+      "@sx-bluecrow-ui/source"
+    ],
+    "paths": {
+      "@sx-bluecrow-ui/vue": [
+        "./vue/src/index.ts"
+      ],
+      "@sx-bluecrow-ui/atoms": [
+        "./angular/src/index.ts"
+      ],
+      "@sx-bluecrow-ui/components": [
+        "./vue/src/index.ts"
+      ]
+    }
   }
 }
