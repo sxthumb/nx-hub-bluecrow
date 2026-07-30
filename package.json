@@ -23,6 +23,7 @@
     "@nx/vue": "^23.1.0",
     "@nx/web": "23.1.0",
     "@nxext/svelte": "^23.0.0",
+    "@nxext/sveltekit": "^23.0.0",
     "@schematics/angular": "~22.0.4",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
     "@swc/helpers": "~0.5.18",
