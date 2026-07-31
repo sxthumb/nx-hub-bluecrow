@@ -4,12 +4,14 @@
   "tailwind": {
     "config": "",
     "css": "src/app.css",
-    "baseColor": "neutral"
+    "baseColor": "neutral",
+    "cssVariables": true
   },
   "aliases": {
     "components": "$lib/components",
     "utils": "$lib/utils",
     "ui": "$lib/components/ui"
   },
+  "registryDependencies": [],
   "typescript": true
 }
