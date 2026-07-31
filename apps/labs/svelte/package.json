@@ -3,7 +3,14 @@
   "version": "0.0.1",
   "type": "module",
   "license": "MIT",
+  "dependencies": {
+    "@lucide/svelte": "^0.542.0",
+    "bits-ui": "^1.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.5.0"
+  },
   "devDependencies": {
-    "svelte": "../../../node_modules/svelte"
+    "svelte": "^5.11.0"
   }
 }
