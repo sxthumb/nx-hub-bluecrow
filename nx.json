@@ -30,7 +30,7 @@
         "previewTargetName": "preview",
         "testTargetName": "test"
       },
-      "exclude": ["apps/labs/svelte/vite.config.ts"]
+      "exclude": ["workspace/projects/hero/vite.config.ts"]
     },
     {
       "plugin": "@nx/js/typescript",
