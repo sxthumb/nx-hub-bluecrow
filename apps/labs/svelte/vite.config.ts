@@ -29,7 +29,12 @@ export default defineConfig({
     tailwindcss(),
     sveltekit(),
   ],
-
+  optimizeDeps: {
+    exclude: ['@lucide/svelte'],
+  },
+  ssr: {
+    noExternal: ['@lucide/svelte'],
+  },
   build: {
     outDir: '../../../dist/apps/labs/svelte',
     emptyOutDir: true,
