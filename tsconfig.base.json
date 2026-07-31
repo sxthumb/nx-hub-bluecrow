@@ -6,7 +6,10 @@
     "emitDeclarationOnly": false,
     "importHelpers": true,
     "isolatedModules": true,
-    "lib": ["es2022"],
+    "lib": [
+      "es2022"
+    ],
+    "types": ["jest", "node"],
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "noEmitOnError": true,
@@ -17,13 +20,31 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@sx-bluecrow-ui/source"],
+    "customConditions": [
+      "@sx-bluecrow-ui/source"
+    ],
     "paths": {
-      "@sx-bluecrow-ui/core": ["./libs/shell/core/src/index.ts"],
-      "@sx-bluecrow-ui/storage": ["./libs/shell/storage/src/index.ts"],
-      "@sx-bluecrow-ui/theme": ["./libs/shell/theme/src/index.ts"],
-      "@sx-bluecrow-ui/angular": ["./libs/angular/src/index.ts"],
-      "@sx-bluecrow-ui/svelte": ["./libs/svelte/src/index.ts"]
+      "@sx-bluecrow-ui/core": [
+        "./libs/shell/core/src/index.ts"
+      ],
+      "@sx-bluecrow-ui/storage": [
+        "./libs/shell/storage/src/index.ts"
+      ],
+      "@sx-bluecrow-ui/theme": [
+        "./libs/shell/theme/src/index.ts"
+      ],
+      "@sx-bluecrow-ui/angular": [
+        "./libs/angular/src/index.ts"
+      ],
+      "@sx-bluecrow-ui/svelte": [
+        "./libs/svelte/src/index.ts"
+      ],
+      "@spartan-ng/helm/button": [
+        "./libs/ui/button/src/index.ts"
+      ],
+      "@spartan-ng/helm/utils": [
+        "./libs/ui/utils/src/index.ts"
+      ]
     }
   }
 }
