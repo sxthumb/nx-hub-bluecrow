@@ -5,21 +5,5 @@
     "baseUrl": "."
   },
   "files": [],
-  "references": [
-    {
-      "path": "./libs/core/validation"
-    },
-    {
-      "path": "./libs/core/network"
-    },
-    {
-      "path": "./libs/core/storage"
-    },
-    {
-      "path": "./libs/core/cache"
-    },
-    {
-      "path": "./libs/angular"
-    }
-  ]
+  "references": []
 }

@@ -19,10 +19,9 @@
     "target": "es2022",
     "customConditions": ["@sx-bluecrow-ui/source"],
     "paths": {
-      "@sx-bluecrow-ui/core-cache": ["./libs/core/cache/src/index.ts"],
-      "@sx-bluecrow-ui/core-network": ["./libs/core/network/src/index.ts"],
-      "@sx-bluecrow-ui/core-storage": ["./libs/core/storage/src/index.ts"],
-      "@sx-bluecrow-ui/core-validation": ["./libs/core/validation/src/index.ts"]
+      "@sx-bluecrow-ui/core": ["./libs/shell/core/src/index.ts"],
+      "@sx-bluecrow-ui/storage": ["./libs/shell/storage/src/index.ts"],
+      "@sx-bluecrow-ui/theme": ["./libs/shell/theme/src/index.ts"]
     }
   }
 }

@@ -6,7 +6,10 @@
     "libsDir": "libs"
   },
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -59,7 +62,10 @@
   "targetDefaults": {
     "e2e": {
       "cache": true,
-      "inputs": ["default", "^production"]
+      "inputs": [
+        "default",
+        "^production"
+      ]
     },
     "@nx/eslint:lint": {
       "cache": true,
@@ -74,26 +80,46 @@
     },
     "@nx/vite:build": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "@nx/vitest:test": {
       "cache": true,
-      "inputs": ["default", "^production"]
+      "inputs": [
+        "default",
+        "^production"
+      ]
     },
     "@nx/js:tsc": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     }
   },
   "generators": {
+    "@nx/js:library": {
+      "directory": "libs/shell",
+      "linter": "eslint"
+    },
     "@nx/angular:library": {
+      "directory": "libs/angular",
       "linter": "eslint",
       "unitTestRunner": "none"
     },
-    "@nx/angular:component": {
-      "style": "css"
+    "@nx/svelte:library": {
+      "directory": "libs/svelte",
+      "linter": "eslint",
+      "unitTestRunner": "none"
     }
   }
 }

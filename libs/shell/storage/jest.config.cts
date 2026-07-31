@@ -1,10 +1,10 @@
 module.exports = {
-  displayName: 'cache',
+  displayName: 'storage',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../coverage/libs/core/cache',
+  coverageDirectory: '../../../coverage/libs/shell/storage',
 };
