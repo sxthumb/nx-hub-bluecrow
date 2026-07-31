@@ -4,6 +4,7 @@
   "type": "module",
   "license": "MIT",
   "devDependencies": {
-    "svelte": "../../../node_modules/svelte"
+    "shadcn-svelte": "^1.4.2",
+    "svelte": "^5.0.0"
   }
 }
