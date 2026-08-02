@@ -34,7 +34,7 @@
         "testTargetName": "test"
       },
       "exclude": [
-        "apps/labs/svelte/vite.config.ts"
+        "workspace/projects/hero/vite.config.ts"
       ]
     },
     {
@@ -56,6 +56,15 @@
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "eslint:lint"
+      }
+    },
+    {
+      "plugin": "@nx/cypress/plugin",
+      "options": {
+        "targetName": "e2e",
+        "openTargetName": "open-cypress",
+        "componentTestingTargetName": "component-test",
+        "ciTargetName": "e2e-ci"
       }
     }
   ],
@@ -104,6 +113,43 @@
         "production",
         "^production"
       ]
+    },
+    "@nx/angular:package": {
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
+    },
+    "@angular/build:application": {
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
+    },
+    "@angular/build:unit-test": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production"
+      ]
+    },
+    "@nx/angular:ng-packagr-lite": {
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     }
   },
   "generators": {
@@ -112,14 +158,28 @@
       "linter": "eslint"
     },
     "@nx/angular:library": {
-      "directory": "libs/angular",
       "linter": "eslint",
-      "unitTestRunner": "none"
+      "unitTestRunner": "none",
+      "directory": "libs/angular"
     },
     "@nx/svelte:library": {
       "directory": "libs/svelte",
       "linter": "eslint",
       "unitTestRunner": "none"
+    },
+    "@nx/angular:component": {
+      "style": "scss"
+    },
+    "@nx/angular:application": {
+      "e2eTestRunner": "cypress",
+      "linter": "eslint",
+      "style": "scss",
+      "unitTestRunner": "vitest-angular"
+    }
+  },
+  "release": {
+    "version": {
+      "preVersionCommand": "npx nx run-many -t build"
     }
   }
 }
