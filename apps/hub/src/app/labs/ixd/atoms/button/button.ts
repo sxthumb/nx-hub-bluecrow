@@ -13,8 +13,8 @@ import { Atom, RippleDirective } from '../../../core/directives';
     { provide: Atom, useExisting: Button }
   ]
 })
-export class Button extends Atom {
-  override onClick(btn: PointerEvent): void {
-    super.onClick(btn);
+export class Button extends Atom<HTMLButtonElement> {
+  override onClick(event: MouseEvent): void {
+    super.onClick(event);
   }
 }
