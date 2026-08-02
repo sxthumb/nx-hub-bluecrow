@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { globalBroker } from '../decorators';
 import { Atom } from './atom.directive';
+import { globalBroker } from '../../decorators';
 
 @Component({
   selector: 'test-atom',
@@ -47,7 +47,7 @@ describe('Atom', () => {
 
   it('should publish click metadata using the parent-node tree and payload from the event', () => {
     const receivedMessages: any[] = [];
-    const subscription = globalBroker.get('edge-atom').subscribe((message) => receivedMessages.push(message));
+    const subscription = globalBroker.get('edge-atom' as any).subscribe((message) => receivedMessages.push(message));
 
     const hostElement = fixture.nativeElement.querySelector('test-atom') as HTMLElement;
     const pointerEvent = new PointerEvent('click', {
