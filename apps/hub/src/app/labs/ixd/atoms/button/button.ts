@@ -1,8 +1,8 @@
-import { 
+import {
   Component,
 } from '@angular/core';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { Atom, RippleDirective } from '../../../core/directives';
+import { AtomButton, RippleDirective } from '../../../core/directives';
 
 @Component({
   selector: 'sx-button',
@@ -10,11 +10,14 @@ import { Atom, RippleDirective } from '../../../core/directives';
   templateUrl: './button.html',
   styleUrl: './button.scss',
   providers: [
-    { provide: Atom, useExisting: Button }
+    { provide: AtomButton, useExisting: Button }
   ]
 })
-export class Button extends Atom<HTMLButtonElement> {
+export class Button extends AtomButton {
   override onClick(event: MouseEvent): void {
+    if (this.disabled) {
+      return;
+    }
     super.onClick(event);
   }
 }

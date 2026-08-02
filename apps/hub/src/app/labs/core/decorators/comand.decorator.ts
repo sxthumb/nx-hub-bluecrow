@@ -1,14 +1,14 @@
-import { 
-  DestroyRef,  
-  inject, 
-  runInInjectionContext, 
+import {
+  DestroyRef,
+  inject,
+  runInInjectionContext,
 } from '@angular/core';
 import { messageBroker } from '@morgan-stanley/message-broker';
+import { AtomBrokerEnvelope, AtomEventMessage, CommandType } from '../types';
 
-export const globalBroker = messageBroker<any>();
-export type CommandType = 'on:click' | 'on:focus';
+export const globalBroker = messageBroker<AtomEventMessage>();
 
-export function Command(command: CommandType, atomId: string) {
+export function Command(command: CommandType, atomId: any) {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
     const originalOnInit = target.ngOnInit;
@@ -18,8 +18,12 @@ export function Command(command: CommandType, atomId: string) {
         originalOnInit.apply(this, args);
       }
 
-      const subscription = globalBroker.get(atomId).subscribe((message) => {
-        originalMethod.call(this, message);
+      const subscription = globalBroker.get(atomId).subscribe((envelope: AtomBrokerEnvelope) => {
+        if (envelope?.data?.event !== command) {
+          return;
+        }
+
+        originalMethod.call(this, envelope.data);
       });
 
       try {

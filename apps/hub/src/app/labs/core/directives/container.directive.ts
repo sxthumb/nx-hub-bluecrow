@@ -1,5 +1,5 @@
 import { Directive, viewChildren } from '@angular/core';
-import { Atom } from './atom.directive';
+import { Atom } from './atoms';
 
 @Directive()
 export abstract class Container {

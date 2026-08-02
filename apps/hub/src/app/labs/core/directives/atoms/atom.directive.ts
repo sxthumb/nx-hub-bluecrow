@@ -6,43 +6,10 @@ import {
   input,
   signal
 } from '@angular/core';
-import { globalBroker } from '../decorators';
-
-export interface DOMNodeMetadata {
-  tagName: string;
-  id?: string;
-  className?: string;
-}
+import { AtomEventName, AtomEventPayload, DOMNodeMetadata } from '../../types';
+import { globalBroker } from '../../decorators';
 
 export type AtomElementName = keyof HTMLElementTagNameMap;
-
-export interface AtomEventPayloadMap {
-  click: MouseEvent;
-  dblclick: MouseEvent;
-  contextmenu: MouseEvent;
-  mousedown: MouseEvent;
-  mouseup: MouseEvent;
-  mouseenter: MouseEvent;
-  mouseleave: MouseEvent;
-  mousemove: MouseEvent;
-  keydown: KeyboardEvent;
-  keyup: KeyboardEvent;
-  keypress: KeyboardEvent;
-  focus: FocusEvent;
-  blur: FocusEvent;
-  input: Event;
-  change: Event;
-  submit: SubmitEvent;
-  pointerdown: PointerEvent;
-  pointerup: PointerEvent;
-  pointermove: PointerEvent;
-  pointerenter: PointerEvent;
-  pointerleave: PointerEvent;
-  pointercancel: PointerEvent;
-}
-
-export type AtomEventName = keyof AtomEventPayloadMap;
-export type AtomEventPayload<TEventName extends AtomEventName> = AtomEventPayloadMap[TEventName];
 
 export interface AtomProps<TElement extends HTMLElement = HTMLElement> {
   readonly nativeElement: TElement;
@@ -92,7 +59,7 @@ export abstract class Atom<TElement extends HTMLElement = HTMLElement> implement
     eventName: TEventName,
     data: AtomEventPayload<TEventName>
   ): void {
-    globalBroker.create(this.id()).publish({
+    globalBroker.create(this.id() as any).publish({
       event: `on:${eventName}`,
       nodeTree: this.getParentNodeTree(),
       data
