@@ -1,0 +1,42 @@
+*::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0;
+  height: 0;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(180deg, #d0368a 0%, #8a4af3 50%, #708ad4 100%);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(180deg, #ff3e9e 0%, #a25aff 50%, #4a75e6 100%);
+}
+
+* {
+  cursor: url('/@resources/icons/cursor.png') 0 0, auto;
+}
+
+a, 
+button, 
+[role="button"], 
+input[type="submit"] {
+  cursor: url('/@resources/icons/pointer.png') 0 0, pointer;
+
+  &:focus,
+  &:focus-visible {
+    cursor: url('/@resources/icons/pointer.png') 0 0, pointer; 
+  }
+
+  &:active {
+    cursor: url('/@resources/icons/pointer.png') 0 0, pointer; 
+  }
+}

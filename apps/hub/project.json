@@ -21,7 +21,13 @@
             "input": "apps/hub/public"
           }
         ],
-        "styles": ["apps/hub/src/styles.scss"]
+        "styles": ["apps/hub/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+              "apps/hub/src",
+              "apps/hub/public"
+            ]
+        }
       },
       "configurations": {
         "production": {
