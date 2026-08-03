@@ -178,8 +178,12 @@
     }
   },
   "release": {
-    "version": {
-      "preVersionCommand": "npx nx run-many -t build"
+    "projectsRelationship": "independent",
+    "groups": {
+      "angular-libs": {
+        "projects": ["bluecrow-angular"],
+        "projectsRelationship": "independent"
+      }
     }
   }
 }

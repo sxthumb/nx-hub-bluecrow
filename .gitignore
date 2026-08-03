@@ -52,4 +52,3 @@ __screenshots__/
 
 workspace/projects/*
 !workspace/projects/.gitkeep
-!workspace/projects/hero/

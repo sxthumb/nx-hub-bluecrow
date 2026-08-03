@@ -21,22 +21,22 @@
     "strict": true,
     "target": "es2022",
     "customConditions": [
-      "@sx-bluecrow-ui/source"
+      "@nx-hub-bluecrow/source"
     ],
     "paths": {
-      "@sx-bluecrow-ui/core": [
+      "@nx-hub-bluecrow/core": [
         "./libs/shell/core/src/index.ts"
       ],
-      "@sx-bluecrow-ui/storage": [
+      "@nx-hub-bluecrow/storage": [
         "./libs/shell/storage/src/index.ts"
       ],
-      "@sx-bluecrow-ui/theme": [
+      "@nx-hub-bluecrow/theme": [
         "./libs/shell/theme/src/index.ts"
       ],
-      "@sx-bluecrow-ui/angular": [
-        "./libs/angular/src/index.ts"
+      "@nx-hub-bluecrow/bluecrow-angular": [
+        "./libs/bluecrow-angular/src/index.ts"
       ],
-      "@sx-bluecrow-ui/svelte": [
+      "@nx-hub-bluecrow/svelte": [
         "./libs/svelte/src/index.ts"
       ],
       "@spartan-ng/helm/button": [

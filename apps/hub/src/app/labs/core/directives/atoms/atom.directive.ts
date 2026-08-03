@@ -4,10 +4,12 @@ import {
   HostListener,
   inject,
   input,
-  signal
+  signal,
+  isDevMode
 } from '@angular/core';
 import { AtomEventName, AtomEventPayload, DOMNodeMetadata } from '../../types';
 import { globalBroker } from '../../decorators';
+import { Container } from '../container.directive';
 
 export type AtomElementName = keyof HTMLElementTagNameMap;
 
@@ -21,6 +23,8 @@ export interface AtomProps<TElement extends HTMLElement = HTMLElement> {
 @Directive()
 export abstract class Atom<TElement extends HTMLElement = HTMLElement> implements AtomProps<TElement> {
   private readonly elementRef = inject<ElementRef<TElement>>(ElementRef);
+
+  private readonly parentContainer = inject(Container, { optional: true });
 
   readonly id = input('', { alias: 'id' });
   private readonly textContent = signal("I'm an Atom!");
@@ -59,7 +63,17 @@ export abstract class Atom<TElement extends HTMLElement = HTMLElement> implement
     eventName: TEventName,
     data: AtomEventPayload<TEventName>
   ): void {
-    globalBroker.create(this.id() as any).publish({
+
+    if (!this.parentContainer && isDevMode()) {
+      console.warn(`[Atom] "${this.id()}":: O evento não será emitido, pois está sem um Container pai no contexto de DI.`);
+      return;
+    }
+
+    const channelId = this.parentContainer
+      ? `${this.parentContainer.id}:${this.id()}`
+      : this.id();
+
+    globalBroker.create(channelId as any).publish({
       event: `on:${eventName}`,
       nodeTree: this.getParentNodeTree(),
       data

@@ -1,5 +1,5 @@
 {
-  "name": "angular",
+  "name": "bluecrow-angular",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/angular/src",
   "prefix": "lib",
@@ -18,19 +18,20 @@
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "defaultConfiguration": "production",
       "options": {
-        "project": "libs/angular/ng-package.json",
-        "tsConfig": "libs/angular/tsconfig.lib.json"
+        "project": "{projectRoot}/ng-package.json",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/angular/tsconfig.lib.prod.json"
+          "tsConfig": "{projectRoot}/tsconfig.lib.prod.json"
         },
         "development": {}
       }
     },
     "nx-release-publish": {
       "options": {
-        "packageRoot": "dist/{projectRoot}"
+        "packageRoot": "dist/{projectRoot}",
+        "registry": "https://npm.pkg.github.com"
       }
     },
     "lint": {
