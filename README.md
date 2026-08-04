@@ -1,5 +1,7 @@
 # Nx Hub Bluecrow
 
+⚠️ EM CONSTRUÇÃO — Esta biblioteca está sob desenvolvimento ativo.
+
 ## Sobre o projeto
 
 O **nx-hub-bluecrow** é um **hub de desenvolvimento multi-framework**, construído como um monorepo [Nx](https://nx.dev). O objetivo do workspace é centralizar, em um único repositório, bibliotecas, aplicações e pacotes que utilizam diferentes frameworks e stacks do ecossistema front-end, permitindo compartilhamento de código, padronização de ferramentas (lint, testes, build, release) e cache/execução de tarefas de forma unificada via Nx.
