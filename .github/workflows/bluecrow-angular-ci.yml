@@ -19,3 +19,14 @@ jobs:
 
       - name: Run Bluecrow Angular verification action
         uses: ./libs/bluecrow-angular
+
+      - name: Push Subtree to Public Repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PUBLIC_REPO_TOKEN }}
+        with:
+          source-directory: 'libs/bluecrow-angular'
+          destination-github-username: 'sxthumb'
+          destination-repository-name: 'bluecrow-angular'
+          user-email: 'sxthumb@users.noreply.github.com'
+          target-branch: 'main'
