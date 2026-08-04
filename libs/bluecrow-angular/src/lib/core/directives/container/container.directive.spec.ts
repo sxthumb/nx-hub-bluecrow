@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Atom } from './atom.directive';
-import { Container } from './container.directive';
+import { Container } from '../container.directive';
 
 @Component({
   selector: 'test-atom',

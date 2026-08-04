@@ -1,5 +1,5 @@
 import { DestroyRef, Injector, TestBed } from '@angular/core';
-import { Command, globalBroker } from './comand.decorator';
+import { Listener, broker } from './listener.decorator';
 
 class HostWithInjector {
   public receivedMessage: any;
@@ -15,7 +15,7 @@ class HostWithInjector {
     this.destroyCallCount += 1;
   }
 
-  @Command('on:click', 'host-with-injector')
+  @Listener('on:click', 'host-with-injector')
   handle(message: any): void {
     this.receivedMessage = message;
   }
@@ -34,13 +34,13 @@ class HostWithoutInjector {
     this.destroyCallCount += 1;
   }
 
-  @Command('on:click', 'host-without-injector')
+  @Listener('on:click', 'host-without-injector')
   handle(message: any): void {
     this.receivedMessage = message;
   }
 }
 
-describe('Command', () => {
+describe('Listener', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
   });
@@ -50,13 +50,13 @@ describe('Command', () => {
     host.injector = TestBed.inject(Injector);
 
     host.ngOnInit();
-    globalBroker.create('host-with-injector').publish({ event: 'on:click', payload: { edge: true } });
+    broker.create('host-with-injector').publish({ event: 'on:click', payload: { edge: true } });
 
     expect(host.initCallCount).toBe(1);
     expect(host.receivedMessage).toEqual({ event: 'on:click', payload: { edge: true } });
 
     host.ngOnDestroy();
-    globalBroker.create('host-with-injector').publish({ event: 'on:click', payload: { afterDestroy: true } });
+    broker.create('host-with-injector').publish({ event: 'on:click', payload: { afterDestroy: true } });
 
     expect(host.destroyCallCount).toBe(1);
     expect(host.receivedMessage).toEqual({ event: 'on:click', payload: { edge: true } });
@@ -66,13 +66,13 @@ describe('Command', () => {
     const host = new HostWithoutInjector();
 
     host.ngOnInit();
-    globalBroker.create('host-without-injector').publish({ event: 'on:click', payload: { edge: true } });
+    broker.create('host-without-injector').publish({ event: 'on:click', payload: { edge: true } });
 
     expect(host.initCallCount).toBe(1);
     expect(host.receivedMessage).toEqual({ event: 'on:click', payload: { edge: true } });
 
     host.ngOnDestroy();
-    globalBroker.create('host-without-injector').publish({ event: 'on:click', payload: { afterDestroy: true } });
+    broker.create('host-without-injector').publish({ event: 'on:click', payload: { afterDestroy: true } });
 
     expect(host.destroyCallCount).toBe(1);
     expect(host.receivedMessage).toEqual({ event: 'on:click', payload: { edge: true } });

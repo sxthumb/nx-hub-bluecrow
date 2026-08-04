@@ -18,5 +18,13 @@
     {
       "path": "./tsconfig.lib.json"
     }
-  ]
+  ],
+  "paths": {
+    "@bluecrow/angular": ["./src/index.ts"],
+    "@bluecrow/angular/*": ["./src/*"],
+    "@bluecrow/angular/core": ["./src/core/index.ts"],
+    "@bluecrow/angular/core/*": ["./src/core/*"],
+    "@bluecrow/angular/decorators": ["./src/decorators/index.ts"],
+    "@bluecrow/angular/decorators/*": ["./src/decorators/*"],
+  }
 }

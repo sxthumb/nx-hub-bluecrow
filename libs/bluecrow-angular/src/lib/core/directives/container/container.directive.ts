@@ -1,8 +1,9 @@
 import { Directive, viewChildren } from '@angular/core';
-import { Atom } from './atoms';
+import { Atom } from '../atoms';
+import { UIContext } from '../ui-context';
 
 @Directive()
-export abstract class Container {
+export abstract class Container implements UIContext {
   private readonly children = viewChildren(Atom);
   private _id: string = crypto.randomUUID();
 

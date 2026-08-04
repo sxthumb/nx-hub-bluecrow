@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Button } from '../../ixd/atoms/button/button';
-import { Command } from '../../core/decorators';
+import { Listener } from '../../core/decorators';
 import { Container } from '../../core/directives';
 import { provideContainer } from '../../core/helpers';
+import { UIEventMessage } from '../../core/types';
 
 @Component({
   imports: [Button],
@@ -11,12 +12,14 @@ import { provideContainer } from '../../core/helpers';
   providers: [provideContainer(Hero)],
 })
 export class Hero extends Container {
-  ngAfterViewInit(): void {
-    this.atom('button-outline')?.updateTextContent("I'm a button now!");
+
+  @Listener('on:click', 'button-outline')
+  onSaveClicked(message: UIEventMessage) {
+    console.log('Hero recebeu o evento pós-debounce:', message.payload);
   }
 
-  @Command('on:click', 'button-outline')
-  buttonClick(message: any) {
-    console.log('Clicou em mim! Dados da mensagem:', message);
+  @Listener('on:mouseenter', 'button-outline')
+  onMouseEnter(message: UIEventMessage) {
+    console.log('Hero recebeu o evento de mouse enter:', message.payload);
   }
 }

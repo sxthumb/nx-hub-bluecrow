@@ -1,0 +1,28 @@
+name: Sync Angular Lib to Public Repo
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'libs/angular/**'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Monorepo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push Subtree to Public Repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PUBLIC_REPO_TOKEN }}
+        with:
+          source-directory: 'libs/angular'
+          destination-github-username: 'sxthumb'
+          destination-repository-name: 'bluecrow-angular'
+          user-email: 'sxthumb@users.noreply.github.com'
+          target-branch: 'main'
