@@ -10,7 +10,7 @@ const config: Config = {
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/libs/bluecrow-angular',
   collectCoverageFrom: ['src/**/*.ts', '!src/**/*.spec.ts', '!src/**/*.bench.ts'],
-  testMatch: ['**/ui-broker.spec.ts'],
+  testMatch: ['**/ui-broker.spec.ts', '**/helpers.spec.ts', '**/command.decorators.spec.ts'],
 };
 
 export default config;

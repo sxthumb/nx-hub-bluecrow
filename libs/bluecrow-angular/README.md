@@ -1,8 +1,10 @@
-# bluecrow-angular
+# bluecrow-angular 
+
+**⚠️ EM CONSTRUÇÃO — Esta biblioteca está sob desenvolvimento ativo.**
 
 Uma camada de eventos desacoplada para Angular: componentes disparam comandos semânticos (`on:click`, `on:keydown`...) via decorators, e qualquer parte da aplicação pode escutar esses comandos sem precisar de uma relação direta de pai/filho no template.
 
-Gerado originalmente com [Nx](https://nx.dev), a lib evoluiu para um sistema próprio de mensageria interna (`UIBrokerMessenger`) combinado com um catálogo de átomos de UI (`Atom`, `AtomButton`, `AtomTextField`...) e decorators (`@Command`, `@Listener`, `@CommandShortcut`...) que tratam eventos de DOM como comandos publicados num broker, não como `@Output()` amarrados à árvore de componentes.
+Gerado usando o nosso projeto [Hub Bluecrow](https://github.com/sxthumb/nx-hub-bluecrow) que é em [Nx](https://nx.dev), a lib evoluiu para um sistema próprio de mensageria interna (`UIBrokerMessenger`) combinado com um catálogo de átomos de UI (`Atom`, `AtomButton`, `AtomTextField`...) e decorators (`@Command`, `@Listener`, `@CommandShortcut`...) que tratam eventos de DOM como comandos publicados num broker, não como `@Output()` amarrados à árvore de componentes.
 
 ## Por que isso existe
 
@@ -39,7 +41,15 @@ UIBrokerMessenger.publish()     ──── notifica handlers do canal+comando
 @Listener (em um Container)     ──── recebe a UIEventMessage
 ```
 
-## Instalação e uso rápido
+## Instalação (via GitHub)
+
+Por estar em desenvolvimento, a biblioteca pode ser instalada diretamente a partir do repositório no GitHub:
+
+```bash
+npm install github:sxthumb/bluecrow-angular
+```
+
+## Uso rápido
 
 Como lib gerada via Nx dentro do workspace, o consumo é direto pelo path do projeto:
 
@@ -82,3 +92,16 @@ A wiki cobre cada peça da arquitetura em mais profundidade:
 | [`wiki/03-events-e-directives.md`](./wiki/03-events-e-directives.md) | `EventDirective`, `COMMAND_EVENT_MAP`, o guard de `dispatchUIEvent` |
 | [`wiki/04-decorators.md`](./wiki/04-decorators.md) | `@Command`, `@CommandShortcut`, `@AsyncCommand`, `@AsyncCommandShortcut`, `@Listener` |
 | [`wiki/05-performance.md`](./wiki/05-performance.md) | Benchmarks reais de `publish`/`register`, características de escala |
+
+## Testes e Benchmarks
+
+Para rodar os testes unitários da biblioteca via Jest:
+
+```bash
+npx jest --runInBand --coverage --config libs/bluecrow-angular/jest.config.ts
+```
+Para executar os testes de performance (benchmarks) do broker via ts-node:
+
+```bash
+npx ts-node --project libs/bluecrow-angular/tsconfig.spec.json --transpile-only libs/bluecrow-angular/src/lib/core/providers/ui-broker.bench.ts
+```

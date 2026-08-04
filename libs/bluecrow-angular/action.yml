@@ -1,0 +1,23 @@
+name: 'Bluecrow Angular verify'
+description: 'Runs the bluecrow-angular Jest unit tests and benchmark suite.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'npm'
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Run Jest unit tests
+      shell: bash
+      run: npx jest --runInBand --coverage --config libs/bluecrow-angular/jest.config.ts
+
+    - name: Run benchmark
+      shell: bash
+      run: npx ts-node --project libs/bluecrow-angular/tsconfig.spec.json --transpile-only libs/bluecrow-angular/src/lib/core/providers/ui-broker.bench.ts
