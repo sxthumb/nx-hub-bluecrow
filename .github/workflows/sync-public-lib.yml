@@ -1,11 +1,12 @@
 name: Sync Angular Lib to Public Repo
+
 on:
   workflow_dispatch:
   push:
     branches:
       - main
     paths:
-      - 'libs/core/**'
+      - 'libs/bluecrow-angular/**'
 
 jobs:
   sync:
@@ -21,7 +22,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.PUBLIC_REPO_TOKEN }}
         with:
-          source-directory: 'libs/core'
+          source-directory: 'libs/bluecrow-angular'
           destination-github-username: 'sxthumb'
           destination-repository-name: 'bluecrow-angular'
           user-email: 'sxthumb@users.noreply.github.com'
