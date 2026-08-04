@@ -1,6 +1,6 @@
 name: Sync Angular Lib to Public Repo
-
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
