@@ -19,14 +19,14 @@ export function AsyncCommand(command: CommandType) {
 
       const binding = COMMAND_EVENT_MAP[command];
       if (!binding) {
-        console.warn(`[AsyncCommand Decorator] Nenhum mapeamento encontrado para o comando "${command}".`);
+        console.warn(`[AsyncCommand Decorator] (No event binding found for command "${command}")`);
         return;
       }
 
       const injector: Injector | null = this.injector || this.__injector;
       if (!injector) {
         console.warn(
-          `[AsyncCommand Decorator] Não foi possível obter o Injector em "${target.constructor.name}".`
+          `[AsyncCommand Decorator] (Unable to resolve Injector for "${target.constructor.name}")`
         );
         return;
       }
@@ -42,7 +42,7 @@ export function AsyncCommand(command: CommandType) {
 
         if (!directiveInstance) {
           console.warn(
-            `[AsyncCommand Decorator] A diretiva "${binding.directive.name}" para o comando "${command}" não foi injetada no componente "${this.constructor.name}".`
+            `[AsyncCommand Decorator] (Directive "${binding.directive.name}" was not injected for command "${command}" in component "${this.constructor.name}")`
           );
           return;
         }

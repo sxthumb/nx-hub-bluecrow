@@ -3,8 +3,7 @@ import { Container } from '../directives';
 import { provideUIContext } from './provideUIContext';
 
 /**
- * Registra a classe do componente como o provedor do token Container
- * para o contexto de injeção dos elementos filhos.
+ * Registers the component class as the Container provider for child injection context.
  */
 export function provideContainer<T extends Container>(component: Type<T>): Provider {
   return provideUIContext(component);

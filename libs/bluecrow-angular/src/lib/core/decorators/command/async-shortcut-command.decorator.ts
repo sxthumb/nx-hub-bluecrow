@@ -56,7 +56,7 @@ function parseShortcut(shortcut: string): ParsedShortcut {
   }
 
   if (!parsed.key) {
-    throw new Error(`[AsyncCommandShortcut Decorator] Atalho inválido: "${shortcut}" não define uma tecla principal.`);
+    throw new Error(`[AsyncCommandShortcut Decorator] (Invalid shortcut "${shortcut}": it does not define a primary key)`);
   }
 
   return parsed;
@@ -100,14 +100,14 @@ export function AsyncCommandShortcut(
 
       const binding = COMMAND_EVENT_MAP[command];
       if (!binding) {
-        console.warn(`[AsyncCommandShortcut Decorator] Nenhum mapeamento encontrado para o comando "${command}".`);
+        console.warn(`[AsyncCommandShortcut Decorator] (No event binding found for command "${command}")`);
         return;
       }
 
       const injector: Injector | null = this.injector || this.__injector;
       if (!injector) {
         console.warn(
-          `[AsyncCommandShortcut Decorator] Não foi possível obter o Injector em "${target.constructor.name}".`
+          `[AsyncCommandShortcut Decorator] (Unable to resolve Injector for "${target.constructor.name}")`
         );
         return;
       }
@@ -119,7 +119,7 @@ export function AsyncCommandShortcut(
 
         if (!directiveInstance) {
           console.warn(
-            `[AsyncCommandShortcut Decorator] A diretiva "${binding.directive.name}" para o comando "${command}" não foi injetada no componente "${this.constructor.name}".`
+            `[AsyncCommandShortcut Decorator] (Directive "${binding.directive.name}" was not injected for command "${command}" in component "${this.constructor.name}")`
           );
           return;
         }
@@ -142,7 +142,7 @@ export function AsyncCommandShortcut(
               }
             },
             error: (err) =>
-              console.error(`[AsyncCommandShortcut Decorator] Erro no stream do atalho/comando "${shortcut}":`, err),
+              console.error(`[AsyncCommandShortcut Decorator] (Shortcut/command stream failed for "${shortcut}")`, err),
           });
 
           destroyRef.onDestroy(() => subscription.unsubscribe());

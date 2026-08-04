@@ -69,7 +69,7 @@ export abstract class EventDirective {
     if (!parentId) {
       if (isDevMode()) {
         console.warn(
-          `[UIBroker] Disparo de "${command}" cancelado: Átomo "${this.childId}" não está sob um UIContext válido.`
+          `[UIBroker] (Event "${command}" cancelled because atom "${this.childId}" is not under a valid UIContext)`
         );
       }
       return;

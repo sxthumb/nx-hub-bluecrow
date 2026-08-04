@@ -2,7 +2,7 @@ import { Provider, Type, AbstractType, forwardRef } from '@angular/core';
 import { Atom } from '../directives';
 
 /**
- * Registra o componente no contexto do Atom (ou sub-classes abstratas como AtomButton).
+ * Registers the component as the provider for the Atom token in the current DI context.
  */
 export function provideAtom<T extends Atom>(
   component: Type<T>,

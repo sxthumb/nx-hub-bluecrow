@@ -56,7 +56,7 @@ function parseShortcut(shortcut: string): ParsedShortcut {
   }
 
   if (!parsed.key) {
-    throw new Error(`[CommandShortcut Decorator] Atalho inválido: "${shortcut}" não define uma tecla principal.`);
+    throw new Error(`[CommandShortcut Decorator] (Invalid shortcut "${shortcut}": it does not define a primary key)`);
   }
 
   return parsed;
@@ -100,14 +100,14 @@ export function CommandShortcut(
 
       const binding = COMMAND_EVENT_MAP[command];
       if (!binding) {
-        console.warn(`[CommandShortcut Decorator] Nenhum mapeamento encontrado para o comando "${command}".`);
+        console.warn(`[CommandShortcut Decorator] (No event binding found for command "${command}")`);
         return;
       }
 
       const injector: Injector | null = this.injector || this.__injector;
       if (!injector) {
         console.warn(
-          `[CommandShortcut Decorator] Não foi possível obter o Injector em "${target.constructor.name}".`
+          `[CommandShortcut Decorator] (Unable to resolve Injector for "${target.constructor.name}")`
         );
         return;
       }
@@ -121,7 +121,7 @@ export function CommandShortcut(
 
         if (!targetDirective) {
           console.warn(
-            `[CommandShortcut Decorator] A diretiva "${binding.directive.name}" para o comando "${command}" não foi injetada no componente "${this.constructor.name}".`
+            `[CommandShortcut Decorator] (Directive "${binding.directive.name}" was not injected for command "${command}" in component "${this.constructor.name}")`
           );
           return;
         }
@@ -147,7 +147,7 @@ export function CommandShortcut(
                 }
               },
               error: (err) =>
-                console.error(`[CommandShortcut Decorator] Erro no stream do comando/atalho "${shortcut}":`, err),
+                console.error(`[CommandShortcut Decorator] (Shortcut/command stream failed for "${shortcut}")`, err),
             });
             return;
           }

@@ -18,14 +18,14 @@ export function Command(command: CommandType) {
 
       const binding = COMMAND_EVENT_MAP[command];
       if (!binding) {
-        console.warn(`[Command Decorator] Nenhum mapeamento encontrado para o comando "${command}".`);
+        console.warn(`[Command Decorator] (No event binding found for command "${command}")`);
         return;
       }
 
       const injector: Injector | null = this.injector || this.__injector;
       if (!injector) {
         console.warn(
-          `[Command Decorator] Não foi possível obter o Injector em "${target.constructor.name}".`
+          `[Command Decorator] (Unable to resolve Injector for "${target.constructor.name}")`
         );
         return;
       }
@@ -33,7 +33,7 @@ export function Command(command: CommandType) {
       runInInjectionContext(injector, () => {
         const directiveInstance = inject<EventDirective>(binding.directive, { optional: true });
 
-        console.log(`[Command Decorator] Injetando diretiva "${binding.directive.name}" para o comando "${command}" no componente "${this.constructor.name}".`);
+        console.log(`[Command Decorator] (Injecting directive "${binding.directive.name}" for command "${command}" in component "${this.constructor.name}")`);
 
         const atomId = this.id ? (typeof this.id === 'function' ? this.id() : this.id) : null;
         if (directiveInstance && atomId) {
@@ -42,7 +42,7 @@ export function Command(command: CommandType) {
 
         if (!directiveInstance) {
           console.warn(
-            `[Command Decorator] A diretiva "${binding.directive.name}" para o comando "${command}" não foi injetada no componente "${this.constructor.name}".`
+            `[Command Decorator] (Directive "${binding.directive.name}" was not injected for command "${command}" in component "${this.constructor.name}")`
           );
           return;
         }

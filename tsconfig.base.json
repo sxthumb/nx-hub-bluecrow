@@ -36,6 +36,15 @@
       "@nx-hub-bluecrow/bluecrow-angular": [
         "./libs/bluecrow-angular/src/index.ts"
       ],
+      "@bluecrow-angular": [
+        "./libs/bluecrow-angular/src/index.ts"
+      ],
+      "@bluecrow-angular/core": [
+        "./libs/bluecrow-angular/src/lib/core/index.ts"
+      ],
+      "@bluecrow-angular/core/*": [
+        "./libs/bluecrow-angular/src/lib/core/*"
+      ],
       "@nx-hub-bluecrow/svelte": [
         "./libs/svelte/src/index.ts"
       ],

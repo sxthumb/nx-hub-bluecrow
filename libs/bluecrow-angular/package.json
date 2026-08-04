@@ -1,5 +1,5 @@
 {
-  "name": "@sxthumb/bluecrow-angular",
+  "name": "@bluecrow-angular/core",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^22.0.0",

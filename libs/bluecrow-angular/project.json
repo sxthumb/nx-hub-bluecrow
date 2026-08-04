@@ -1,7 +1,7 @@
 {
   "name": "bluecrow-angular",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/angular/src",
+  "sourceRoot": "libs/bluecrow-angular/src",
   "prefix": "lib",
   "projectType": "library",
   "release": {
@@ -26,6 +26,13 @@
           "tsConfig": "{projectRoot}/tsconfig.lib.prod.json"
         },
         "development": {}
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "{projectRoot}/jest.config.ts"
       }
     },
     "nx-release-publish": {

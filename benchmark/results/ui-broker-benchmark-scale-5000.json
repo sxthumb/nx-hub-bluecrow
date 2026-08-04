@@ -1,0 +1,27 @@
+{
+  "name": "UIBrokerMessenger benchmark (scale=5000)",
+  "date": "2026-08-04T11:23:08.145Z",
+  "version": "1.0.0",
+  "results": [
+    {
+      "name": "publish with 5000 subscribers",
+      "ops": 47090,
+      "margin": 3.41,
+      "percentSlower": 0
+    },
+    {
+      "name": "register 5000 handlers",
+      "ops": 1353,
+      "margin": 5.48,
+      "percentSlower": 97.13
+    }
+  ],
+  "fastest": {
+    "name": "publish with 5000 subscribers",
+    "index": 0
+  },
+  "slowest": {
+    "name": "register 5000 handlers",
+    "index": 1
+  }
+}

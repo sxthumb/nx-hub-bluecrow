@@ -1,12 +1,19 @@
 import { isDevMode } from "@angular/core";
 import { IMessenger, MessageHandler, CommandType, UIEventMessage, SubscriptionToken } from "../types";
 
+/**
+ * Lightweight in-memory message broker used by the bluecrow Angular core layer.
+ * It routes UI events by channel and command while keeping each subscriber set isolated.
+ */
 export class UIBrokerMessenger implements IMessenger {
   private readonly channels = new Map<
     string,
     Map<CommandType, Set<MessageHandler<any>>>
   >();
 
+  /**
+   * Publishes a UI event to every handler registered for the target channel and command.
+   */
   public publish<TCmd extends CommandType>(
     channelId: string,
     message: UIEventMessage<TCmd>
@@ -21,11 +28,14 @@ export class UIBrokerMessenger implements IMessenger {
       try {
         handler(message);
       } catch (error) {
-        console.error(`[UIBroker] Erro ao processar handler no canal "${channelId}":`, error);
+        console.error(`[UIBroker] (Failed to process handler for channel "${channelId}")`, error);
       }
     }
   }
 
+  /**
+   * Registers a message handler for a specific channel/command pair.
+   */
   public register<TCmd extends CommandType>(
     channelId: string,
     command: TCmd,
@@ -64,6 +74,9 @@ export class UIBrokerMessenger implements IMessenger {
     };
   }
 
+  /**
+   * Reports whether the given channel has any subscribed handlers for the optional command.
+   */
   public hasSubscribers(channelId: string, command?: CommandType): boolean {
     const channelCommands = this.channels.get(channelId);
     if (!channelCommands) return false;
@@ -76,6 +89,9 @@ export class UIBrokerMessenger implements IMessenger {
     return Array.from(channelCommands.values()).some((set) => set.size > 0);
   }
 
+  /**
+   * Removes every subscription registered under the provided channel.
+   */
   public unregisterAll(channelId: string): void {
     this.channels.delete(channelId);
   }

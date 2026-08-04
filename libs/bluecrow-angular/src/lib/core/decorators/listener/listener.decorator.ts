@@ -26,7 +26,7 @@ export function Listener(command: CommandType, atomId: string) {
 
       if (!containerId && isDevMode()) {
         console.warn(
-          `[Listener] @Listener('${command}', '${atomId}') no método "${String(propertyKey)}" da classe "${target.constructor.name}" não encontrou um ID de contexto.`
+          `[Listener] (@Listener('${command}', '${atomId}') on "${String(propertyKey)}" in "${target.constructor.name}" could not resolve a context id)`
         );
       }
 
